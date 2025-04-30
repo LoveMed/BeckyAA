@@ -44,7 +44,7 @@ local function toggleAimbot()
     StarterGui:SetCore("SendNotification", {
         Title = "Status",
         Text = message,
-        Duration = 2
+        Duration = 0.5
     })
 
     print("BeckysAA toggled: " .. tostring(aimbotEnabled))
