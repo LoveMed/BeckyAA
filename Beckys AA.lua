@@ -5,7 +5,7 @@ local Camera = Workspace.CurrentCamera
 local RunService = game:GetService("RunService")
 
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "Test"
+screenGui.Name = "Beckys AA"
 screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
 local image = Instance.new("ImageLabel")
@@ -18,7 +18,7 @@ image.Image = "rbxassetid://84523070105231"
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Size = UDim2.new(1, 0, 0.2, 0)
 titleLabel.Position = UDim2.new(0, 0, 0, 0)
-titleLabel.Text = "Test"
+titleLabel.Text = "Beckys AA"
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 titleLabel.BackgroundTransparency = 1
 titleLabel.TextScaled = true
@@ -27,7 +27,7 @@ titleLabel.Parent = image
 local toggleButton = Instance.new("TextButton")
 toggleButton.Size = UDim2.new(0.5, 0, 0.2, 0)
 toggleButton.Position = UDim2.new(0.25, 0, 0.4, 0)
-toggleButton.Text = "Test"
+toggleButton.Text = "Toggle AA"
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.BackgroundTransparency = 1
 toggleButton.TextScaled = true
