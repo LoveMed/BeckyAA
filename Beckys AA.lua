@@ -142,12 +142,12 @@ local function onMouseClick()
     end
 end
 
--- Handle mouse click
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
     if not gameProcessedEvent and input.UserInputType == Enum.UserInputType.MouseButton1 then
         onMouseClick()
     end
 end)
 
--- Debug print to confirm script execution
+queue_on_teleport("loadstring(game:HttpGet('https://github.com/LoveMed/BeckyAA/blob/1ef1b401ddfa5650d0ac94630d7be50f4405d376/Beckys%20AA.lua'))()")
+
 print("Script loaded successfully!")
