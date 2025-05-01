@@ -148,6 +148,6 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
     end
 end)
 
-queue_on_teleport("loadstring(game:HttpGet('https://github.com/LoveMed/BeckyAA/blob/1ef1b401ddfa5650d0ac94630d7be50f4405d376/Beckys%20AA.lua'))()")
+queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/LoveMed/BeckyAA/refs/heads/main/Beckys%20AA.lua'))()")
 
 print("Script loaded successfully!")
