@@ -38,27 +38,28 @@ toggleButton.TextScaled = true
 toggleButton.Parent = image
 
 --====================================================
--- FIXED STATUS ICON (Always Visible)
+-- STATUS ICON (Always Visible + Smaller)
 --====================================================
 
 local statusIcon = Instance.new("Frame")
-statusIcon.Size = UDim2.new(0, 30, 0, 30)
+statusIcon.Size = UDim2.new(0, 18, 0, 18) -- smaller circle
 statusIcon.AnchorPoint = Vector2.new(1, 1)
 statusIcon.Position = UDim2.new(1, -20, 1, -20)
-statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- default OFF (red)
 statusIcon.BorderSizePixel = 0
-statusIcon.ZIndex = 999999
-statusIcon.Parent = screenGui
+statusIcon.ZIndex = 999999 -- always on top
+statusIcon.Parent = game:GetService("CoreGui") -- <--- IMPORTANT
+-- This makes it NOT disappear when your GUI closes
 
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(1, 0)
+corner.CornerRadius = UDim.new(1, 0) -- perfect circle
 corner.Parent = statusIcon
 
 local function updateStatusIcon()
     if aimbotEnabled then
-        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- green
     else
-        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red
     end
 end
 
