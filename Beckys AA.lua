@@ -38,14 +38,16 @@ toggleButton.TextScaled = true
 toggleButton.Parent = image
 
 --====================================================
--- 🔵 STATUS ICON (Green = ON, Red = OFF)
+-- FIXED STATUS ICON (Always Visible)
 --====================================================
 
 local statusIcon = Instance.new("Frame")
-statusIcon.Size = UDim2.new(0, 20, 0, 20)
-statusIcon.Position = UDim2.new(1, -30, 1, -30) -- bottom-right corner
-statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- OFF by default
+statusIcon.Size = UDim2.new(0, 30, 0, 30)
+statusIcon.AnchorPoint = Vector2.new(1, 1)
+statusIcon.Position = UDim2.new(1, -20, 1, -20)
+statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 statusIcon.BorderSizePixel = 0
+statusIcon.ZIndex = 999999
 statusIcon.Parent = screenGui
 
 local corner = Instance.new("UICorner")
@@ -54,9 +56,9 @@ corner.Parent = statusIcon
 
 local function updateStatusIcon()
     if aimbotEnabled then
-        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- GREEN
+        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     else
-        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- RED
+        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     end
 end
 
@@ -168,3 +170,4 @@ end)
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/YourName/Repo/main/script.lua"))()')
 
 print("Script loaded successfully!")
+
