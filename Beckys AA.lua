@@ -38,28 +38,37 @@ toggleButton.TextScaled = true
 toggleButton.Parent = image
 
 --====================================================
--- STATUS ICON (Always Visible + Smaller)
+-- FIXED ALWAYS-VISIBLE STATUS ICON
 --====================================================
 
+local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Make a separate GUI so it never hides with your menu
+local statusGui = Instance.new("ScreenGui")
+statusGui.Name = "StatusCircleUI"
+statusGui.IgnoreGuiInset = true
+statusGui.ResetOnSpawn = false
+statusGui.Parent = PlayerGui
+
 local statusIcon = Instance.new("Frame")
-statusIcon.Size = UDim2.new(0, 18, 0, 18) -- smaller circle
+sta
+tusIcon.Size = UDim2.new(0, 18, 0, 18) -- small circle
 statusIcon.AnchorPoint = Vector2.new(1, 1)
-statusIcon.Position = UDim2.new(1, -20, 1, -20)
-statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- default OFF (red)
+statusIcon.Position = UDim2.new(1, -20, 1, -20) -- bottom-right
+statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red default
 statusIcon.BorderSizePixel = 0
-statusIcon.ZIndex = 999999 -- always on top
-statusIcon.Parent = game:GetService("CoreGui") -- <--- IMPORTANT
--- This makes it NOT disappear when your GUI closes
+statusIcon.ZIndex = 999999
+statusIcon.Parent = statusGui
 
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(1, 0) -- perfect circle
+corner.CornerRadius = UDim.new(1, 0)
 corner.Parent = statusIcon
 
 local function updateStatusIcon()
     if aimbotEnabled then
-        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- green
+        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     else
-        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red
+        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
     end
 end
 
@@ -71,7 +80,8 @@ local function toggleAimbot()
     aimbotEnabled = not aimbotEnabled
     toggleButton.Text = aimbotEnabled and "BeckysAA ON" or "BeckysAA OFF"
 
-    updateStatusIcon()
+    updateStatusIcon()           -- your original icon (menu one)
+    UpdateCircle(aimbotEnabled)  -- always-visible small circle
 
     print("BeckysAA toggled: " .. tostring(aimbotEnabled))
 end
