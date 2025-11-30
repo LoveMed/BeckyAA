@@ -8,9 +8,16 @@ local aimbotEnabled = false
 local guiVisible = true
 local smoothness = 0.2
 
+local localPlayer = Players.LocalPlayer
+local PlayerGui = localPlayer:WaitForChild("PlayerGui")
+
+--====================================================
+-- MAIN UI
+--====================================================
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "Beckys AA"
-screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+screenGui.Parent = PlayerGui
 
 local image = Instance.new("ImageLabel")
 image.Size = UDim2.new(0.5, 0, 0.5, 0)
@@ -38,12 +45,9 @@ toggleButton.TextScaled = true
 toggleButton.Parent = image
 
 --====================================================
--- FIXED ALWAYS-VISIBLE STATUS ICON
+-- ALWAYS-VISIBLE STATUS ICON
 --====================================================
 
-local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-
--- Make a separate GUI so it never hides with your menu
 local statusGui = Instance.new("ScreenGui")
 statusGui.Name = "StatusCircleUI"
 statusGui.IgnoreGuiInset = true
@@ -51,11 +55,10 @@ statusGui.ResetOnSpawn = false
 statusGui.Parent = PlayerGui
 
 local statusIcon = Instance.new("Frame")
-sta
-tusIcon.Size = UDim2.new(0, 18, 0, 18) -- small circle
+statusIcon.Size = UDim2.new(0, 18, 0, 18) -- small circle
 statusIcon.AnchorPoint = Vector2.new(1, 1)
 statusIcon.Position = UDim2.new(1, -20, 1, -20) -- bottom-right
-statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red default
+statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red default (OFF)
 statusIcon.BorderSizePixel = 0
 statusIcon.ZIndex = 999999
 statusIcon.Parent = statusGui
@@ -66,11 +69,13 @@ corner.Parent = statusIcon
 
 local function updateStatusIcon()
     if aimbotEnabled then
-        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        statusIcon.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- green ON
     else
-        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        statusIcon.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red OFF
     end
 end
+
+updateStatusIcon() -- set initial color
 
 --====================================================
 -- TOGGLE FUNCTION
@@ -80,8 +85,7 @@ local function toggleAimbot()
     aimbotEnabled = not aimbotEnabled
     toggleButton.Text = aimbotEnabled and "BeckysAA ON" or "BeckysAA OFF"
 
-    updateStatusIcon()           -- your original icon (menu one)
-    UpdateCircle(aimbotEnabled)  -- always-visible small circle
+    updateStatusIcon()
 
     print("BeckysAA toggled: " .. tostring(aimbotEnabled))
 end
@@ -155,9 +159,7 @@ local function aimbot()
     end
 end
 
-RunService.RenderStepped:Connect(function()
-    aimbot()
-end)
+RunService.RenderStepped:Connect(aimbot)
 
 -- Shoot functionality
 local function onMouseClick()
@@ -178,7 +180,6 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
     end
 end)
 
-queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/YourName/Repo/main/script.lua"))()')
+queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/LoveMed/BeckyAA/main/Beckys%20AA.lua"))()')
 
 print("Script loaded successfully!")
-
