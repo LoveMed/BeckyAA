@@ -6,7 +6,7 @@ local RunService = game:GetService("RunService")
 
 local aimbotEnabled = false
 local guiVisible = true
-local smoothness = 0.2
+local smoothness = 0.05
 
 local localPlayer = Players.LocalPlayer
 local PlayerGui = localPlayer:WaitForChild("PlayerGui")
@@ -183,3 +183,4 @@ end)
 queue_on_teleport('loadstring(game:HttpGet("https://raw.githubusercontent.com/LoveMed/BeckyAA/main/Beckys%20AA.lua"))()')
 
 print("Script loaded successfully!")
+
